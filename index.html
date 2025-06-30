@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="payment-plan-info">
                                         <div id="product_name" class="payment-plan-info-name">vexzomart</div>
-                                        <div id="product_price" class="payment-plan-info-price">Amount: ৳1</div>
+                                        <div id="product_price" class="payment-plan-info-price">Amount: ৳25</div>
                                     </div>
                                     <span id="cancel-payment" style="color:red" class="payment-plan-change">Cancel</span>
                                 </div>
@@ -44,7 +44,7 @@
                                     <div class="payment-summary-divider"></div>
                                     <div class="payment-summary-item payment-summary-total">
                                         <div class="payment-summary-name">Total</div>
-                                        <div id="total" class="payment-summary-price">৳1                                       </div>
+                                        <div id="total" class="payment-summary-price">৳25                                       </div>
                                     </div>
                                 </div>
                             </div>
@@ -59,11 +59,19 @@
                                   <label for="bkash" class="payment-method-item" onclick="showPaymentDetails('bkash')">
                                     <img src="images/bkash.png" alt="BKash" />
                                   </label>
+                                <input type="radio" name="payment-method" id="nagad" />
+                                  <label for="nagad" class="payment-method-item" onclick="showPaymentDetails('nagad')">
+                                    <img src="images/nagad.png" alt="Nagad" />
+                                  </label>
                                                             </div>
                             <div class="payment-details" id="bkashDetails">
                                     <button id="bKash_merchant" type="submit" class="payment-form-submit-button">
                                         <img src="pay.svg" alt="icon" style="margin: -5px; padding-right: 10px;" /> Pay Now
-                                    </button></div>                        </div>
+                                    </button></div><div class="payment-details" id="nagadDetails">
+                                        <button id="nagad_merchant" type="submit" class="payment-form-submit-button">
+                                            <img src="pay.svg" alt="icon" style="margin: -5px; padding-right: 10px;" /> Pay Now
+                                        </button>
+                                    </div>                        </div>
                     </div>
                 </div>
             </div>
@@ -94,7 +102,7 @@
                         </li>
                         <hr/>
                         <li class="li_row">
-                            <p class="text-left">মোট টাকার পরিমাণঃ <span id="amount2" class="marked_text">1.00</span></p>
+                            <p class="text-left">মোট টাকার পরিমাণঃ <span id="amount2" class="marked_text">25.00</span></p>
                         </li>
                         <hr />
                         <li class="li_row">
@@ -118,9 +126,9 @@
         <script type="text/javascript" src="includes/loading.js"></script>
         
         <script>
-        const PAYMENT_KEY = 'DzxRs3qUxTmK3LvYnpQW';
+        const PAYMENT_KEY = 'xlTRksulWmrK6Av7Q3eX';
 
-        var bkashSteps = {"step_1":"*247# ডায়াল করে আপনার BKASH অ্যাপে অথবা BKASH মোবাইল মেনুতে যান।","method":"\"Send Money\"","number":"01316506540","step_5":"নিশ্চিত করতে এখন আপনার BKASH পিন লিখুন।","background":"#e2136e","copy_btn_color":"#9B1D55","img":"images\/bkash-payment.png"};document.getElementById("bKash_merchant").onclick = () => open("bkash");        
+        var bkashSteps = {"step_1":"*247# ডায়াল করে আপনার BKASH অ্যাপে অথবা BKASH মোবাইল মেনুতে যান।","method":"\"Send Money\"","number":"01316506540","step_5":"নিশ্চিত করতে এখন আপনার BKASH পিন লিখুন।","background":"#e2136e","copy_btn_color":"#9B1D55","img":"images\/bkash-payment.png"};document.getElementById("bKash_merchant").onclick = () => open("bkash");var nagadSteps = {"step_1":"*167# ডায়াল করে আপনার NAGAD অ্যাপে অথবা NAGAD মোবাইল মেনুতে যান।","method":"\"Send Money\"","number":"01316506540","step_5":"নিশ্চিত করতে এখন আপনার NAGAD পিন লিখুন।","background":"#c90008","copy_btn_color":"#970006","img":"images\/nagad-payment.png"};document.getElementById("nagad_merchant").onclick = () => open("nagad");        
                 
         const popup = new Popup("blur-layer", "popup-layout");
         var payment_method = '';
@@ -229,7 +237,7 @@
                     showErrorToast("Wrong Transaction ID!");
                 } else {
                     var data = {
-                        'csrf_token': "RUJcEUJZQkZEXA==",
+                        'csrf_token': "RUJcEUJZQUVOWw==",
                         'payment-method': payment_method,
                         'payment-key': PAYMENT_KEY,
                         'trx': trx
@@ -253,7 +261,7 @@
             document.getElementById("cancel-payment").addEventListener("click", function () {
                 var data = {
                     "payment-key": PAYMENT_KEY,
-                    "csrf_token": "RUJcEUJZQkZEXA=="
+                    "csrf_token": "RUJcEUJZQUVOWw=="
                 };
                 
                 sendRequest('POST', 'cancel.php', (err, response) => {
